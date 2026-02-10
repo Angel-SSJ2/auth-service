@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations.Schema; // Agrega esta línea para usar la anotación [ForeignKey]
 
 namespace AuthService.Domain.Entities;
 public class UserRole
