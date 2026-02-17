@@ -1,0 +1,6 @@
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.csproj.AssemblyReference.cache
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.AssemblyInfoInputs.cache
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.AssemblyInfo.cs
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.csproj.CoreCompileInputs.cache
+C:\pgit\ProyectoKinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\AuthService.Persistence.sourcelink.json
