@@ -8,6 +8,7 @@ C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-s
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfoInputs.cache
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfo.cs
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.CoreCompileInputs.cache
+C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.sourcelink.json
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthServ.67992DEE.Up2Date
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.dll
 C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\refint\AuthService.Application.dll
