@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RGYN8EuR/Bc=",
+  "dgSpecHash": "NQsGecyL7Bo=",
   "success": true,
-  "projectFilePath": "C:\\pgit\\ProyectoKinalSport\\auth-service\\src\\AuthService.Domain\\AuthService.Domain.csproj",
+  "projectFilePath": "C:\\pgit\\kinalSport\\auth-service\\src\\AuthService.Domain\\AuthService.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],

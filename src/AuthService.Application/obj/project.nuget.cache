@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DyelfIclf/w=",
+  "dgSpecHash": "6MqJwTrK3Pk=",
   "success": true,
-  "projectFilePath": "C:\\pgit\\ProyectoKinalSport\\auth-service\\src\\AuthService.Application\\AuthService.Application.csproj",
+  "projectFilePath": "C:\\pgit\\kinalSport\\auth-service\\src\\AuthService.Application\\AuthService.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
     "C:\\Users\\Informatica\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.2\\microsoft.extensions.configuration.10.0.2.nupkg.sha512",

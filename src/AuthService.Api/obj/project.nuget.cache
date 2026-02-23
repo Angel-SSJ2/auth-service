@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8vFkCVo7fG4=",
+  "dgSpecHash": "Q/jZHOMS8ao=",
   "success": true,
-  "projectFilePath": "C:\\pgit\\ProyectoKinalSport\\auth-service\\src\\AuthService.Api\\AuthService.Api.csproj",
+  "projectFilePath": "C:\\pgit\\kinalSport\\auth-service\\src\\AuthService.Api\\AuthService.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\efcore.namingconventions\\9.0.0\\efcore.namingconventions.9.0.0.nupkg.sha512",
     "C:\\Users\\Informatica\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
