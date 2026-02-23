@@ -1,3 +1,7 @@
+using AuthService.Api.Extensions;
+using AuthService.Persistence.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,11 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Configracion de Servicios por Medio de Metodos de Extension
+builder.Services.AddApplicationServices(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -35,6 +43,28 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+// Inicializacion de la Base de Datos con Datos de Prueba
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    
+    try
+    {
+        logger.LogInformation("Iniciando migraciones de la base de datos...");
+        await context.Database.EnsureCreatedAsync();
+        logger.LogInformation("Migraciones aplicadas exitosamente.");
+        await DataSeeder.SeedAsync(context);
+        logger.LogInformation("Datos de prueba insertados exitosamente.");
+    }
+    catch (Exception es)
+    {
+        logger.LogError(es, "An error occurred while seeding the database.");
+        throw; // Re-throw the exception after logging it
+    }
+}
+
+//------------------------------------------------------------------------------
 
 app.Run();
 
