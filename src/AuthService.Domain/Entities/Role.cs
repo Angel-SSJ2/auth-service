@@ -8,8 +8,8 @@ public class Role
     [MaxLength(16)] // Assuming a maximum length for the role ID
     public string Id { get; set; }
 
-    [Required] // Name is required
-    [MaxLength(50)] // Assuming a maximum length for the role name
+    [Required(ErrorMessage = "El nombre del rol es requerido")] // Name is required
+    [MaxLength(100, ErrorMessage = "El nombre del rol no puede exceder los 50 caracteres")] // Assuming a maximum length for the role name
     public string Name { get; set; }
 
     [Required] // Description is required
