@@ -2,6 +2,8 @@ using AuthService.Domain.Entities;
 using AuthService.Domain.Constants;
 using AuthService.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
+using AuthService.Application.Interfaces;
+using AuthService.Application.Service;
 
 namespace AuthService.Api.Extensions;
 
@@ -16,8 +18,10 @@ public static class ServiceCollectionExtensions
             .UseSnakeCaseNamingConvention());
         
         // Se registra el servicio de inicialización de datos (DataSeeder) en el contenedor de servicios con un alcance transitorio (Transient), lo que significa que se creará una nueva instancia del servicio cada vez que se solicite.
+        services.AddScoped<IEmailService, EmailService>();
+        
         services.AddHealthChecks();
 
         return services;
-}
+    }
 }

@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CONFIGURACION DE RUTAS
+builder.Services.AddControllers();
+
 // CONFIGURACION DE SERVICIOS POR MEDIO DE METODOS DE EXTENSION
 builder.Services.AddApplicationServices(builder.Configuration);
 
@@ -21,6 +24,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
 var summaries = new[]
 {

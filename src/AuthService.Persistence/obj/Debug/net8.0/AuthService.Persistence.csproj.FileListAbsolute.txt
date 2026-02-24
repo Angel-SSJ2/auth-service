@@ -36,3 +36,5 @@ C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.
 C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Persistence\obj\Debug\net8.0\ref\AuthService.Persistence.dll
 C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Application.dll
 C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Application.pdb
+C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Application.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\authentication-service\auth-service\src\AuthService.Persistence\bin\Debug\net8.0\AuthService.Application.pdb
