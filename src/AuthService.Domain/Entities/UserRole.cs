@@ -19,13 +19,13 @@ public class UserRole
         public string RoleId { get; set; } = string.Empty;
 
         [Required]
-        public User user { get; set; } = null!;
+        public DateTime AssignedAt { get; set; }
 
         [Required]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         [Required]
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; }
 
         // Navigation properties
         public User User { get; set; } = null!;
