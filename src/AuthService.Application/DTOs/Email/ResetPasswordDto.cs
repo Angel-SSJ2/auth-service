@@ -4,13 +4,10 @@ namespace AuthService.Application.DTOs.Email;
 
 public class ResetPasswordDto
 {
-    [Required(ErrorMessage = "El email es requerido.")]
-    public string Email { get; set; } = string.Empty;
+    [Required]
+    public string Token { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "El token es requerido.")]
-    public string ResetToken { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "La nueva contraseña es requerida.")]
-    [MinLength(8, ErrorMessage = "La nueva contraseña debe tener al menos 8 caracteres.")]
+    [Required]
+    [MinLength(8)]
     public string NewPassword { get; set; } = string.Empty;
-}
+} 

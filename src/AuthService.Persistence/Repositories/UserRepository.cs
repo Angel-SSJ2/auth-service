@@ -9,7 +9,7 @@ namespace AuthService.Persistence.Repositories;
 public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
     // Se utiliza el método GetByIdAsync para obtener un usuario por su ID, incluyendo sus entidades relacionadas (UserProfile, UserEmail, UserPasswordReset, UserRoles) utilizando la función Include de Entity Framework Core
-    public async Task<User> GetByIdAsync(string id)
+    public async Task<User?> GetByIdAsync(string id)
     {
         // Se utiliza Include para cargar las entidades relacionadas (UserProfile, UserEmail, UserPasswordReset, UserRoles) junto con el usuario principal
         var user = await context.Users

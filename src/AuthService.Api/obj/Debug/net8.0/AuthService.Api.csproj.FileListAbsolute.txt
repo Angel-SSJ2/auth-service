@@ -457,3 +457,11 @@ C:\Users\aless\Documents\Portfolio\auth-service\src\AuthService.Api\obj\Debug\ne
 C:\Users\aless\Documents\Portfolio\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.pdb
 C:\Users\aless\Documents\Portfolio\auth-service\src\AuthService.Api\obj\Debug\net8.0\AuthService.Api.genruntimeconfig.cache
 C:\Users\aless\Documents\Portfolio\auth-service\src\AuthService.Api\obj\Debug\net8.0\ref\AuthService.Api.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\MailKit.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\MimeKit.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\Informatica\Documents\proyecto-kinalSport\auth-service\src\AuthService.Api\bin\Debug\net8.0\Konscious.Security.Cryptography.Blake2.dll
