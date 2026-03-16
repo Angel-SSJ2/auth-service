@@ -1,4 +1,4 @@
-using AuthService.Application.Service;
+using AuthService.Application.Services;
 using AuthService.Domain.Interfaces;
 using AuthService.Domain.Entities;
 using AuthService.Persistence.Data;

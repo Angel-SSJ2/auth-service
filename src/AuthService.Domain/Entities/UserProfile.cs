@@ -15,6 +15,7 @@ public class UserProfile
     public string UserId { get; set; } = string.Empty;
 
     public string ProfilePictureUrl { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
     public string Bio { get; set; } = string.Empty;
     public DateTime DateOfBirth { get; set; }
 

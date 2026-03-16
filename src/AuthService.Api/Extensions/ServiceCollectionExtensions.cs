@@ -1,27 +1,45 @@
-using AuthService.Domain.Entities;
-using AuthService.Domain.Constants;
-using AuthService.Persistence.Data;
-using Microsoft.EntityFrameworkCore;
 using AuthService.Application.Interfaces;
-using AuthService.Application.Service;
+using AuthService.Application.Services;
+using AuthService.Domain.Interfaces;
+using AuthService.Persistence.Data;
+using AuthService.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore; 
+
 
 namespace AuthService.Api.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services, 
-    IConfiguration configuration) 
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Se registra el ApplicationDbContext en el contenedor de servicios utilizando la cadena de conexión definida en el archivo de configuración (appsettings.json) bajo la clave "DefaultConnection". Se utiliza el proveedor de base de datos Npgsql para PostgreSQL y se configura para usar la convención de nomenclatura en snake_case.
+        // INICIALIZANDO EL CONEXION A LA BASE DE DATOS
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
-            .UseSnakeCaseNamingConvention());
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                       .UseSnakeCaseNamingConvention());
+
+        // Configure application services <------ ACTUALIZACIÓN
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<IAuthService, Application.Services.AuthService>();
+        services.AddScoped<IUserManagementService, UserManagementService>();
+        services.AddScoped<IPasswordHashService, PasswordHashService>();
+        services.AddScoped<IJwtTokenService, JwtTokenService>();
+        services.AddScoped<ICloudinaryService, CloudinaryService>();
         
-        // Se registra el servicio de inicialización de datos (DataSeeder) en el contenedor de servicios con un alcance transitorio (Transient), lo que significa que se creará una nueva instancia del servicio cada vez que se solicite.
+        // Servicio de correo
         services.AddScoped<IEmailService, EmailService>();
-        
-        services.AddHealthChecks();
+
+
+        services.AddHealthChecks(); 
 
         return services;
     }
+
+    public static IServiceCollection AddApiDocumentation(this IServiceCollection services)
+{
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
+
+    return services;
+}
 }

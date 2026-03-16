@@ -5,7 +5,7 @@ using MailKit.Security;
 using MimeKit;
 using AuthService.Application.Interfaces;
 
-namespace AuthService.Application.Service;
+namespace AuthService.Application.Services;
 
 public class EmailService(IConfiguration configuration, ILogger<EmailService> logger) : IEmailService
 {
