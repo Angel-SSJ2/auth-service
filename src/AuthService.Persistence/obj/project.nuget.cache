@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tXdihfFapNY=",
+  "dgSpecHash": "1Wrj22cbI0A=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
+  "projectFilePath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\Informatica\\.nuget\\packages\\cloudinarydotnet\\1.28.0\\cloudinarydotnet.1.28.0.nupkg.sha512",

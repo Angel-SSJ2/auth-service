@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CHVbn9ci4NM=",
+  "dgSpecHash": "yUhaZdufo2w=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Application\\AuthService.Application.csproj",
+  "projectFilePath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Application\\AuthService.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Informatica\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\Informatica\\.nuget\\packages\\cloudinarydotnet\\1.28.0\\cloudinarydotnet.1.28.0.nupkg.sha512",
@@ -79,6 +79,16 @@
     "C:\\Users\\Informatica\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"MailKit\" 4.15.0 tiene una vulnerabilidad de gravedad moderada conocida, https://github.com/advisories/GHSA-9j88-vvj5-vhgr",
+      "libraryId": "MailKit",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1902",
       "level": "Warning",

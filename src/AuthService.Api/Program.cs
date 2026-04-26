@@ -6,71 +6,68 @@ using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Serilog;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-// CONFIGURACIÓN
-// FIX: Bypass SSL (Cloudinary, etc.)
+// FIX: Bypass SSL (Solo para desarrollo)
 System.Net.ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
-
-// Configura Serilog como el motor de registro (logging) principal de tu aplicación
-// reemplazando al sistema por defecto de .NET.
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services));
 
-
-// Integra la configuración de FileDataModelBinderProvider.cs
 builder.Services.AddControllers(options =>
 {
-    // Agregar el model binder para IFileData
     options.ModelBinderProviders.Insert(0, new FileDataModelBinderProvider());
 })
 .AddJsonOptions(o =>
 {
-    // Estandarizar las respuestas en camelCase para coincidir con auth-node
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
 
-
-// CONFIGURACIÓN DE SERVICIOS POR MEDIO DE MÉTODOS DE EXTENSIÓN
+// CONFIGURACIÓN DE SERVICIOS
 builder.Services.AddApiDocumentation();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddRateLimitingPolicies();
-
-
-// INTEGRAR SERVICIOS DE SEGURIDAD
 builder.Services.AddSecurityPolicies(builder.Configuration);
 builder.Services.AddSecurityOptions();
 
+// --- 1. REGISTRO DE POLÍTICA CORS ---
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultCorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") 
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
 
-// .....................................................
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-// .....................................................
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath)) options.IncludeXmlComments(xmlPath);
+});
 
+var app = builder.Build();
 
+// --- CONFIGURACIÓN DEL PIPELINE ---
 
-var app = builder.Build(); 
-
-
-// CONFIGURACIÓN DE HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Add Serilog request logging
 app.UseSerilogRequestLogging();
 
-// Add Security Headers using NetEscapades package
+// --- 2. CONFIGURACIÓN DE SECURITY HEADERS (CORREGIDO) ---
 app.UseSecurityHeaders(policies => policies
     .AddDefaultSecurityHeaders()
     .RemoveServerHeader()
@@ -78,58 +75,51 @@ app.UseSecurityHeaders(policies => policies
     .AddXssProtectionBlock()
     .AddContentTypeOptionsNoSniff()
     .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-    .AddContentSecurityPolicy(builder =>
+    .AddContentSecurityPolicy(cspBuilder =>
     {
-        builder.AddDefaultSrc().Self();
-        builder.AddScriptSrc().Self().UnsafeInline();
-        builder.AddStyleSrc().Self().UnsafeInline();
-        builder.AddImgSrc().Self().Data();
-        builder.AddFontSrc().Self().Data();
-        builder.AddConnectSrc().Self();
-        builder.AddFrameAncestors().None();
-        builder.AddBaseUri().Self();
-        builder.AddFormAction().Self();
+        cspBuilder.AddDefaultSrc().Self();
+        cspBuilder.AddScriptSrc().Self().UnsafeInline();
+        cspBuilder.AddStyleSrc().Self().UnsafeInline();
+        cspBuilder.AddImgSrc().Self().Data();
+        cspBuilder.AddFontSrc().Self().Data();
+        
+        // FIX DEFINITIVO: Usamos un solo string con los orígenes separados por espacios
+        // Esto es lo que dicta el estándar de CSP y lo que la librería acepta sin errores de sobrecarga
+        cspBuilder.AddConnectSrc()
+            .Self()
+            .From("http://localhost:5212 https://localhost:5212 http://localhost:5173 ws://localhost:5173");
+            
+        cspBuilder.AddFrameAncestors().None();
+        cspBuilder.AddBaseUri().Self();
+        cspBuilder.AddFormAction().Self();
     })
     .AddCustomHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=()")
     .AddCustomHeader("Cache-Control", "no-store, no-cache, must-revalidate, private")
 );
 
-// Global exception handling
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
-
-
-// Core middlewares
 app.UseHttpsRedirection();
-app.UseCors("DefaultCorsPolicy");
+
+// --- 3. CORS ---
+app.UseCors("DefaultCorsPolicy"); 
+
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-
-// Health check endpoints - both versions for compatibility
-// Standard health check endpoint
+// HEALTH CHECKS
 app.MapHealthChecks("/health");
-
-
-// Custom health endpoint to match Node.js response format
 app.MapGet("/health", () =>
 {
-    var response = new
-    {
-        status = "Healthy",
-        timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
-    };
+    var response = new { status = "Healthy", timestamp = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") };
     return Results.Ok(response);
 });
-
 app.MapHealthChecks("/api/v1/health");
 
-
-
-// Startup log: addresses and health endpoint
+// STARTUP LOG
 var startupLogger = app.Services.GetRequiredService<ILogger<Program>>();
 app.Lifetime.ApplicationStarted.Register(() =>
 {
@@ -138,7 +128,6 @@ app.Lifetime.ApplicationStarted.Register(() =>
         var server = app.Services.GetRequiredService<IServer>();
         var addressesFeature = server.Features.Get<IServerAddressesFeature>();
         var addresses = (IEnumerable<string>?)addressesFeature?.Addresses ?? app.Urls;
-
         if (addresses != null && addresses.Any())
         {
             foreach (var addr in addresses)
@@ -147,42 +136,30 @@ app.Lifetime.ApplicationStarted.Register(() =>
                 startupLogger.LogInformation("AuthService API is running at {Url}. Health endpoint: {HealthUrl}", addr, health);
             }
         }
-        else
-        {
-            startupLogger.LogInformation("AuthService API started. Health endpoint: /health");
-        }
     }
     catch (Exception ex)
     {
-        startupLogger.LogWarning(ex, "Failed to determine the listening addresses for startup log");
+        startupLogger.LogWarning(ex, "Failed to determine the listening addresses");
     }
 });
 
-
-// Initialize database and seed data
+// INITIALIZE DATABASE
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
     try
     {
         logger.LogInformation("Checking database connection...");
-
-        // Ensure database is created (similar to Sequelize sync in Node.js)
         await context.Database.EnsureCreatedAsync();
-
         logger.LogInformation("Database ready. Running seed data...");
         await DataSeeder.SeedAsync(context);
-
-        logger.LogInformation("Database initialization completed successfully");
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "An error occurred while initializing the database");
-        throw; // Re-throw to stop the application
+        logger.LogError(ex, "Database initialization failed.");
+        throw; 
     }
 }
-
 
 app.Run();

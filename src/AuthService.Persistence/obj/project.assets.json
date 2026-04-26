@@ -6126,11 +6126,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
+      "projectUniqueName": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
       "projectName": "AuthService.Persistence",
-      "projectPath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
+      "projectPath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Persistence\\AuthService.Persistence.csproj",
       "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Persistence\\obj\\",
+      "outputPath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -6145,11 +6145,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Application\\AuthService.Application.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Application\\AuthService.Application.csproj"
+            "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Application\\AuthService.Application.csproj": {
+              "projectPath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Application\\AuthService.Application.csproj"
             },
-            "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Domain\\AuthService.Domain.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Documents\\proyecto-kinalSport\\auth-service\\src\\AuthService.Domain\\AuthService.Domain.csproj"
+            "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Domain\\AuthService.Domain.csproj": {
+              "projectPath": "D:\\6to\\1Bim\\kinalSport\\auth-service123\\src\\AuthService.Domain\\AuthService.Domain.csproj"
             }
           }
         }
@@ -6200,7 +6200,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.416/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Informatica\\AppData\\Local\\Microsoft\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
